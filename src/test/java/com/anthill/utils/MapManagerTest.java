@@ -1,20 +1,19 @@
-import static org.junit.jupiter.api.Assertions.*;
+package com.anthill.utils;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.*;
 
-import com.anthill.utils.MapManager;
+import org.junit.Test;
 
-class MapManagerTest {
+public class MapManagerTest {
 	
 	@Test
-	void testGetInstance() {
+	public void testGetInstance() {
 		MapManager mapManager = MapManager.getInstance();
-		
-		assertNotNull(mapManager, "Error: Object is null");
+		assertNotNull(mapManager);
 	}
 
 	@Test
-	void testIsEmpty() {
+	public void testIsEmpty() {
 		//fail("Not yet implemented");
 		MapManager mapManager = MapManager.getInstance();
 		mapManager.initMap();
@@ -24,7 +23,7 @@ class MapManagerTest {
 	
 	
 	@Test
-	void testRandNumber() {
+	public void testRandNumber() {
 		int max = 18;
 		int min = 8;
 		MapManager mapManager = MapManager.getInstance();
