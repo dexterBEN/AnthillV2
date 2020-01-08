@@ -1,4 +1,4 @@
-package com.anthill.utils;
+package com.anthill.entities;
 
 public class Coordinate {
 	private int x;

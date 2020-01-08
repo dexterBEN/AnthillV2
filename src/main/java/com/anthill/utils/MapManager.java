@@ -6,6 +6,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 import com.anthill.entities.Ant;
+import com.anthill.entities.Coordinate;
+import com.anthill.entities.Queen;
 import com.sun.javafx.collections.MapAdapterChange;
 
 public class MapManager {
@@ -19,6 +21,7 @@ public class MapManager {
 	private String WHITE = "\u001b[0m";
 	private String mapArray[][];
 	
+	private UserManager userManager = new UserManager();	
 	private static final MapManager singletonInstance;
 	
 	static {
@@ -47,17 +50,10 @@ public class MapManager {
 	
 	public void initMap() 
 	{
-		Scanner sc = new Scanner(System.in);
-		
-		//set width & height of map:
-		System.out.print("Give map width: ");
-		String widthStr = sc.nextLine();
-		System.out.print("Give map height: ");
-		String heightStr = sc.nextLine();
-		
-		 width = Integer.parseInt(widthStr);
-		 height = Integer.parseInt(heightStr);
-		 mapArray = new String [width][height];
+		userManager.setMapSize();
+		width = userManager.getWidth();
+		height = userManager.getHeight();
+		mapArray = new String [width][height];
 		 
 		 for(int i = 0; i < width; i++) 
 		 {
@@ -92,6 +88,18 @@ public class MapManager {
 			case "GREEN":
 				mapArray[ant.getX()][ant.getY()] = GREEN + ant.getBadge() + WHITE;
 				break;
+		}
+	}
+	
+	public void initQueenChilds(Queen queen, int step) {
+		for(Ant child: queen.getChilds()) 
+		{
+			child.setBadge();
+			child.setColor(queen.getColor());
+			child.setX(queen.getX());
+			child.setY(queen.getY()+step);
+			printAntOnMap(child);
+			step++;
 		}
 	}
 	

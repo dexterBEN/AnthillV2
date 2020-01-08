@@ -2,8 +2,6 @@ package com.anthill.entities;
 
 import java.util.UUID;
 
-import com.anthill.utils.Coordinate;
-
 public abstract class Ant {
 	
 	private Coordinate coordinate = new Coordinate();

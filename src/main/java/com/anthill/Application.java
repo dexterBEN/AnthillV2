@@ -44,50 +44,54 @@ public class Application {
 		mapManager.drawMap(w, h);
 		
 		mapManager.newLine(2);
-		//mapManager.getMapField().put(q2, q2.getCoordinate());
+		
+		mapManager.getMapField().put(q1, q1.getCoordinate());
+		mapManager.getMapField().put(q2, q2.getCoordinate());
 		//System.out.print(mapManager.getMapField().get(q2).getX()+" "+mapManager.getMapField().get(q2).getX());
 		
 		//create queen child:
-		List <Ant> q1Childs = q1.giveBirth();
-		int n = 1;
-		for(Ant child: q1Childs) 
-		{
-			child.setBadge();
-			child.setColor(q1.getColor());
-			child.setX(q1.getX());
-			child.setY(q1.getY()+n);
-			mapManager.printAntOnMap(child);
-			n++;
-		}
+		q1.giveBirth();
+		mapManager.initQueenChilds(q1, 1);
 		
-		List <Ant> q2Childs = q2.giveBirth();
-		n = 1;
-		for(Ant child: q1Childs) 
-		{
-			child.setBadge();
-			child.setColor(q2.getColor());
-			child.setX(q2.getX());
-			child.setY(q2.getY()-n);
-			mapManager.printAntOnMap(child);
-			n++;
-		}
+		q2.giveBirth();
+		mapManager.initQueenChilds(q2, -3);
 		
 		mapManager.newLine(2);
 		mapManager.drawMap(w, h);
 		
 		mapManager.newLine(2);
+		
 		//simulation loop:
-		int randX = mapManager.randNumber(1, w-1);
-		int randY = mapManager.randNumber(1, h-1);
-		
-		//System.out.println("Contenue de la case"+mapManager.getMap()[1][1]);
-		
-		if(mapManager.isEmpty(1, 1)) 
+		/*
+		for(int i = 0; i < 10; i++) 
 		{
-			System.out.println("This space is empty");
-		}else {
-			System.out.println("not empty this space contain: "+mapManager.getMap()[1][1]);
-		}
+			System.out.println("tour nb: "+i);
+			
+			for(Ant child: q1.getChilds()) {
+				
+				//generate random X,Y and check if this position is free:
+				int randX = mapManager.randNumber(1, w-1);
+				int randY = mapManager.randNumber(1, h-1);
+				
+				if(mapManager.isEmpty(randX, randY)) {
+					System.out.println("The space: ["+randX+"] "+"["+randY+"] is empty");
+					//set the new position and print on map
+					child.setX(randX);
+					child.setY(randY);
+					mapManager.printAntOnMap(child);
+				}else {
+					System.out.println("not empty this space contain: "+mapManager.getMap()[randX][randY]);
+					
+					//set the previous position and print on map:
+					child.setX(child.getX());
+					child.setY(child.getY());
+					mapManager.printAntOnMap(child);	
+				}
+				
+			}
+			
+			mapManager.drawMap(w, h);
+		}*/
 	}
 
 }

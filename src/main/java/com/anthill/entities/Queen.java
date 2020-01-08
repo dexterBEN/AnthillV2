@@ -13,6 +13,10 @@ public class Queen extends Ant{
 		this.setId(UUID.randomUUID());
 	}
 	
+	public List<Ant> getChilds(){
+		return child;
+	}
+	
 	public List<Ant> giveBirth(){
 		
 		int n = 0;
